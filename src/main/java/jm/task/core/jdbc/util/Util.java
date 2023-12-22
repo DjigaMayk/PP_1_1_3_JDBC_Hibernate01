@@ -1,5 +1,9 @@
 package jm.task.core.jdbc.util;
 
+import jm.task.core.jdbc.model.User;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,8 +15,33 @@ public class Util {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
 
+
+    private static SessionFactory sessionFactory;
+
+    private static Connection connection;
+
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+
+    static {
+        try {
+            sessionFactory = new Configuration().addAnnotatedClass(User.class).buildSessionFactory();
+            System.out.println("Connection is succeeded");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Connection is failed");
+
+        }
+    }
+
+
+
+
     public static Connection getConnection() {
-        Connection connection = null;
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             Class.forName(DRIVER);
