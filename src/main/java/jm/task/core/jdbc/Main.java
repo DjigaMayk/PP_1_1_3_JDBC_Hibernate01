@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
 
-        Util.getConnection();
         UserService userService = new UserServiceImpl();
 
         userService.createUsersTable();

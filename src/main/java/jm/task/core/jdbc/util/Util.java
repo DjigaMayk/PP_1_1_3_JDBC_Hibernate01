@@ -22,11 +22,7 @@ public class Util {
 
 
     public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-
-    static {
+        
         try {
             sessionFactory = new Configuration().addAnnotatedClass(User.class).buildSessionFactory();
             System.out.println("Connection is succeeded");
@@ -36,7 +32,9 @@ public class Util {
             System.out.println("Connection is failed");
 
         }
+        return sessionFactory;
     }
+
 
 
 
@@ -50,6 +48,5 @@ public class Util {
             System.out.println("Connection Error");
         }
         return connection;
-
     }
 }
